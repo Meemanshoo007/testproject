@@ -1,0 +1,35 @@
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .borderm {
+            border: 2px solid red;
+        }
+
+        .course-colm {
+
+            flex-basis: 31%;
+            background: lightcyan;
+            transition: 0.5s;
+        }
+
+        .course-colm:hover {
+            /*             border: 1px solid black;           */
+            box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.7);
+            transform: scale(1.02);
+        }
+
+        .hidem {
+            display: none;
+        }
