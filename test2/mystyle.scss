@@ -1,0 +1,35 @@
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+    .container {
+        width: 100%;
+        height: 100%;
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+            &:nth-of-type(1) {
+                background-color: rgb(28, 28, 28);
+                color: green;
+            }
+
+            
+            &:nth-of-type(1) {
+                background-color: rgb(38, 38, 38);
+                color: blue;
+            }
+
+            
+            &:nth-of-type(1) {
+                background-color: rgb(48, 48, 48);
+                color: red;
+            }
+        }
+    }
