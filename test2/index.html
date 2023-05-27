@@ -5,25 +5,181 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
 </head>
 <!-- https://@Meemanshoo007:Meem@2003@github.com/https://github.com/Meemanshoo007/testproject.git -->
-<!-- assadda -->
+<!-- asda -->
+
+
+<style>
+
+
+/* Custom CSS
+ * --------------------------------------- */
+body{
+	font-family: arial,helvetica;
+	color: #333;
+	color: rgba(0,0,0,0.5);
+}
+.wrap{
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	position: relative;
+}
+h1{
+	font-size: 6em;	
+}
+p, h2{
+	font-size: 2em;
+}
+h2{
+	color:inherit;
+}
+.section{
+	text-align:center;
+}
+#menu li {
+	display:inline-block;
+	margin: 10px;
+	color: #000;
+	background:#fff;
+	background: rgba(255,255,255, 0.5);
+	-webkit-border-radius: 10px; 
+            border-radius: 10px; 
+}
+#menu li.active{
+	background:#666;
+	background: rgba(0,0,0, 0.5);
+	color: #fff;
+}
+#menu li a{
+	text-decoration:none;
+	color: #000;
+}
+#menu li.active a:hover{
+	color: #000;
+}
+#menu li:hover{
+	background: rgba(255,255,255, 0.8);
+}
+#menu li a,
+#menu li.active a{
+	padding: 9px 18px;
+	display:block;
+}
+#menu li.active a{
+	color: #fff;
+}
+#menu{
+	position:fixed;
+	top:0;
+	left:0;
+	height: 40px;
+	z-index: 70;
+	width: 100%;
+	padding: 0;
+	margin:0;
+}
+#section0 img,
+#section1 img{
+	margin: 20px 0 0 0;
+}	
+#section2 img,
+#section3 img{
+	margin: 20px 0 0 52px;	
+}
+</style>
 
 <body>
+    <ul id="menu">
+        <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+        <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+        <li data-menuanchor="3rdPage"><a href="#3rdPage">Third section</a></li>
+        <li data-menuanchor="4thpage"><a href="#4thpage">Fourth section</a></li>
+    </ul>
     <div id="fullpage">
-        <div class="section">
-            <h1>Page 1</h1>
-            <p>This is the content of page 1.11</p>
+    
+        <div class="section active" id="section0">
+            <h1>Single Page Demo1</h1>		
         </div>
-        <div class="section">
-            <h1>Page 2</h1>
-            <p>This is the content of page 2.</p>
+        <div class="section" id="section1">
+            <div class="slide active">
+                <div class="intro">
+                    <h1>Create Sliders</h1>
+                    <p>Not only vertical scrolling but also horizontal scrolling. With fullPage.js you will be able to add horizontal sliders in the most simple way ever.</p>				
+                </div>
+            </div>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Simple</h1>
+                    <p>Easy to use. Configurable and customizable.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Cool</h1>
+                    <p>It just looks cool. Impress everybody with a simple and modern web design!</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="intro">
+                    <h1>Compatible</h1>
+                    <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible browser! Lets give them a chance to see your site in a proper way!</p>
+                </div>
+            </div>
         </div>
-        <div class="section">
-            <h1>Page 3</h1>
-            <p>This is the content of page 3.</p>
+        <div class="section" id="section2">
+            <div class="intro">
+                <h1>Easy to use plugin</h1>
+                <p>HTML markup example to define 4 sections.</p>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="intro">
+                <h1>Working On Tablets</h1>
+            </div>
         </div>
     </div>
+    </div>
+    <script src="../jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
-    <script> new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); </script>
+    <script>
+    //  new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); 
+     
+     
+     
+     $(document).ready(function() {
+  var slideIndexS = 0,
+      sliding = false;
+  
+  $('#fullpage').fullpage({
+    sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+    menu: '#menu',
+		css3: true,
+		licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+		afterSlideLoad: function(section, origin, destination, direction){
+			slideIndexS = destination.index+1;
+		},
+		onLeave: function(origin, destination, direction) {
+			console.log('Index: ' + origin.index + ' Slide Index: ' + slideIndexS);
+			//console.log(index, nextIndex, direction, sliding);
+			if (origin.index === 1 && !sliding) {
+				if (direction === 'down' && slideIndexS < 4) {
+					$.fn.fullpage.moveSlideRight();
+					return false;
+				} else if (direction === 'up' && slideIndexS > 1) {
+					$.fn.fullpage.moveSlideLeft();
+					return false;
+				}
+			} else if (sliding) {
+				return false;
+			}
+		}
+	});
+});
+     
+     
+     
+     </script>
 </body>
 
 </html>
