@@ -1,109 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Plus</title>
-     <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-  <style>
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    html,
-    body{
-        height: 100%;
-
-    }
-    .container{
-        display: flex;
-        height: 100%;
-        overflow-y: hidden;
-        overflow-x: scroll;        
-        scroll-snap-type: x mandatory;
-    }
-    section{
-        flex: none;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        scroll-snap-align: start;
-    }
-    .container section:nth-child(2){
-        background: #e2fcff;
-    }
-    .container section:nth-child(3){
-        background: #d0eaff;
-    }
-    .container section:nth-child(4){
-        background: #fce8f4;
-    }
-
-    .container section .content h2{
-        font-size: 4em;
-        color: #111;
-    }
-
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
 </head>
 
 <body>
-    <div class = "container scroll-container">
-        <section>
-                <h2>
-                    Section 1
-                </h2>
-        </section>
-        <section>
-                <h2>
-                    Section 2
-                </h2>
-        </section>
-        <section>
-                <h2>
-                    Section 3
-                </h2>
-        </section>
-        <section>
-                <h2>
-                    Section 4
-                </h2>
-        </section>
+    <div id="fullpage">
+        <div class="section">
+            <h1>Page 1</h1>
+            <p>This is the content of page 1.1</p>
+        </div>
+        <div class="section">
+            <h1>Page 2</h1>
+            <p>This is the content of page 2.</p>
+        </div>
+        <div class="section">
+            <h1>Page 3</h1>
+            <p>This is the content of page 3.</p>
+        </div>
     </div>
-    <!-- <script type="text/javascript" src="skrollr.js"></script> -->
-	<script type="text/javascript">
-	    // var s = skrollr.init();
-
-        // Assuming you have already loaded the required elements
-const scrollContainer = document.querySelector('.scroll-container');
-
-// Detect horizontal scroll event
-scrollContainer.addEventListener('wheel', function(event) {
-    console.log(Math.abs(event.deltaX));
-    performShiftScroll(document.querySelector(".scroll-container"), 100);
-  // Check if horizontal scrolling is being performed
-  if (event.shiftKey && event.deltaY !== 0) {
-    // Prevent the default vertical scrolling
-    event.preventDefault();
-
-    // Scroll horizontally instead
-    scrollContainer.scrollLeft += event.deltaY;
-  }
-});
-
-function performShiftScroll(element, deltaX) {
-  const shiftScrollEvent = new WheelEvent('wheel', {
-    deltaX: deltaX,
-    shiftKey: true
-  });
-
-  element.dispatchEvent(shiftScrollEvent);
-}
-	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script> new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); </script>
 </body>
 
 </html>
