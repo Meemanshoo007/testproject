@@ -1,142 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <title>Plus</title>
-    <link href="footer.css" rel="stylesheet">
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="testimonialStyle.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            overflow-y: hidden;
-        }
+        <style>
 
-        .container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
 
-            height: 100%;
-            overflow-y: hidden;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
-        }
+/* Outer container - the padding will keep the container the correct proportions for the video */
+/* .banner {
+  position: relative;
+  padding-bottom: 56.2%;
+  width: 100%;
+  overflow: hidden;
+} */
 
-        .container section {
 
-            min-width: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background: #fffee1;
 
-            flex: none;
-            scroll-snap-align: start;
-        }
+/* If you want to include the title... */
+/* .banner-title {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  padding: 20px 40px;
+  text-align: center;
+  box-sizing:border-box;
+} */
 
-        .container section:nth-child(2) {
-            background: #e2fcff;
-        }
+/* .banner-title h1 {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+} */
+/* small calption - optional */
+/* .caption {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-style:italic;
+} */
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="videocontainer">
+            
+            <video class="videoembed" autoplay muted loop>
+              <source src="https://netdemo.uk/bbb/bbb.mp4" type="video/mp4">
+              <source src="https://netdemo.uk/bbb/bbb.ogg" type="video/ogg">
+            Your browser does not support the video tag.
+            </video>
+            
+              <!-- <div class="banner-title">
+                <h1>You can place a title over the video like this...</h1>
+              </div> -->
+              
+            </div>
+            </div>
+            
+            
+            <!-- <p class="caption">Video courtesy of 
+            <a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
+            </p> -->
+        
+        <script src="" async defer></script>
+        <script src="../jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+        <script>
+        //  new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); 
+         
+         
+         
+         $(document).ready(function() {
+      var slideIndexS = 0,
+          sliding = false;
 
-        .container section:nth-child(3) {
-            background: #d0eaff;
-        }
-
-        .container section:nth-child(4) {
-            background: #fce8f4;
-        }
-
-        .container section .content {
-            max-width: 800px;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .container section .content h2 {
-            font-size: 4em;
-            color: #111;
-        }
-
-        .container section .content p {
-            font-size: 1.3em;
-            line-height: 1.4em;
-            color: #111;
-        }
-
-        @media (max-width:991px) {
-            .container {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-                transform: none !important;
-                overflow-y: scroll;
-            overflow-x: hidden;
-            scroll-snap-type: y mandatory;
+          $('#fullpage').click
+      
+      $('#fullpage').fullpage({
+        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        menu: '#menu',
+            css3: true,
+            licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+            afterSlideLoad: function(section, origin, destination, direction){
+                slideIndexS = destination.index+1;
+            },
+            onLeave: function(origin, destination, direction) {
+                console.log('Index: ' + origin.index + ' Slide Index: ' + slideIndexS);
+                //console.log(index, nextIndex, direction, sliding);
+                if (origin.index === 0 && !sliding) {
+                    if (direction === 'down' && slideIndexS < 4) {
+                        $.fn.fullpage.moveSlideRight();
+                        return false;
+                    } else if (direction === 'up' && slideIndexS > 0) {
+                        $.fn.fullpage.moveSlideLeft();
+                        return false;
+                    }
+                } else if (sliding) {
+                    return false;
+                }
             }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container elementX " >
-        <section>
-            <div class="content">
-                <h2>
-                    Section 1
-                </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam illo cumque vero. Temporibus
-                    incidunt accusamus minima quod porro placeat numquam. Deserunt corrupti animi nobis expedita nulla.
-                    Labore temporibus ut doloremque!</p>
-            </div>
-        </section>
-        <section>
-            <div class="content">
-                <h2>
-                    Section 2
-                </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam illo cumque vero. Temporibus
-                    incidunt accusamus minima quod porro placeat numquam. Deserunt corrupti animi nobis expedita nulla.
-                    Labore temporibus ut doloremque!</p>
-            </div>
-        </section>
-        <section>
-            <div class="content">
-                <h2>
-                    Section 3
-                </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam illo cumque vero. Temporibus
-                    incidunt accusamus minima quod porro placeat numquam. Deserunt corrupti animi nobis expedita nulla.
-                    Labore temporibus ut doloremque!</p>
-            </div>
-        </section>
-        <section>
-            <div class="content">
-                <h2>
-                    Section 4
-                </h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam illo cumque vero. Temporibus
-                    incidunt accusamus minima quod porro placeat numquam. Deserunt corrupti animi nobis expedita nulla.
-                    Labore temporibus ut doloremque!</p>
-            </div>
-        </section>
-    </div>
-    <script type="text/javascript">
-        const elementX = document.getElementById('elementX');
-        const elementY = document.getElementById('elementY');
-
-        // Scroll element X to the position of element Y
-        // elementX.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    </script>
-</body>
-
+        });
+    });
+         
+    
+    
+         
+         
+         </script>
+    </body>
 </html>

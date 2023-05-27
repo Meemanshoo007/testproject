@@ -8,103 +8,269 @@
 <!-- https://codepen.io/McMDesigns/pen/wYbxWX -->
 
 <style>
-
-
-/* Custom CSS
+    /* Custom CSS
  * --------------------------------------- */
-body{
-	font-family: arial,helvetica;
-	color: #333;
-	color: rgba(0,0,0,0.5);
+    body {
+        font-family: arial, helvetica;
+        color: #333;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .wrap {
+        margin-left: auto;
+        margin-right: auto;
+        width: 960px;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 6em;
+    }
+
+    p,
+    h2 {
+        font-size: 2em;
+    }
+
+    h2 {
+        color: inherit;
+    }
+
+    .section {
+        text-align: center;
+    }
+
+    #menu li {
+        display: inline-block;
+        margin: 10px;
+        color: #000;
+        background: #fff;
+        background: rgba(255, 255, 255, 0.5);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    #menu li.active {
+        background: #666;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+    }
+
+    #menu li a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    #menu li.active a:hover {
+        color: #000;
+    }
+
+    #menu li:hover {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    #menu li a,
+    #menu li.active a {
+        padding: 9px 18px;
+        display: block;
+    }
+
+    #menu li.active a {
+        color: #fff;
+    }
+
+    #menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 40px;
+        z-index: 70;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #section0 img,
+    #section1 img {
+        margin: 20px 0 0 0;
+    }
+
+    #section2 img,
+    #section3 img {
+        margin: 20px 0 0 52px;
+    }
+
+    .fp-prev,
+    .fp-next {
+        display: none;
+    }
+
+    video {
+        height: 100vh;
+        width: 100vw;
+        object-fit: fill;
+    }
+
+   
+.video-play-button {
+  position: absolute;
+  z-index: 10;
+  top: 90%;
+  left: 13%;
+  transform: translateX(-50%) translateY(-50%);
+  box-sizing: content-box;
+  display: block;
+  width: 32px;
+  height: 44px;
+  /* background: #fa183d; */
+  border-radius: 50%;
+  padding: 18px 20px 18px 28px;
 }
-.wrap{
-	margin-left: auto;
-	margin-right: auto;
-	width: 960px;
-	position: relative;
+
+.video-play-button:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: #ba1f24;
+  border-radius: 50%;
+  animation: pulse-border 1500ms ease-out infinite;
 }
-h1{
-	font-size: 6em;	
+
+.video-play-button:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: #fa183d;
+  border-radius: 50%;
+  transition: all 200ms;
 }
-p, h2{
-	font-size: 2em;
+
+.video-play-button:hover:after {
+  background-color: darken(#fa183d, 10%);
 }
-h2{
-	color:inherit;
+
+.video-play-button img {
+  position: relative;
+  z-index: 3;
+  max-width: 100%;
+  width: auto;
+  height: auto;
 }
-.section{
-	text-align:center;
+
+.video-play-button span {
+  display: block;
+  position: relative;
+  z-index: 3;
+  width: 0;
+  height: 0;
+  border-left: 32px solid #fff;
+	border-top: 22px solid transparent;
+	border-bottom: 22px solid transparent;
 }
-#menu li {
-	display:inline-block;
-	margin: 10px;
-	color: #000;
-	background:#fff;
-	background: rgba(255,255,255, 0.5);
-	-webkit-border-radius: 10px; 
-            border-radius: 10px; 
+
+@keyframes pulse-border {
+  0% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+    opacity: 0;
+  }
 }
-#menu li.active{
-	background:#666;
-	background: rgba(0,0,0, 0.5);
-	color: #fff;
+
+
+
+.video-overlay {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.80);
+  opacity: 0;
+  transition: all ease 500ms;
 }
-#menu li a{
-	text-decoration:none;
-	color: #000;
+
+.video-overlay.open {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
 }
-#menu li.active a:hover{
-	color: #000;
+
+.video-overlay-close {
+  position: absolute;
+  z-index: 1000;
+  top: 15px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms;
 }
-#menu li:hover{
-	background: rgba(255,255,255, 0.8);
+
+.video-overlay-close:hover {
+  color: #fa183d;
 }
-#menu li a,
-#menu li.active a{
-	padding: 9px 18px;
-	display:block;
-}
-#menu li.active a{
-	color: #fff;
-}
-#menu{
-	position:fixed;
-	top:0;
-	left:0;
-	height: 40px;
-	z-index: 70;
-	width: 100%;
-	padding: 0;
-	margin:0;
-}
-#section0 img,
-#section1 img{
-	margin: 20px 0 0 0;
-}	
-#section2 img,
-#section3 img{
-	margin: 20px 0 0 52px;	
+
+.video-overlay iframe {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateX(-50%) translateY(-50%);
+  /* width: 90%; */
+  /* height: auto; */
+  box-shadow: 0 0 15px rgba(0,0,0,0.75);
 }
 </style>
 
 <body>
     <ul id="menu">
-        <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+        <li data-menuanchor="firstPage" class="active"><a href="" class="firstBtn">First section</a></li>
         <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-        <li data-menuanchor="3rdPage"><a href="#3rdPage">Third section</a></li>
-        <li data-menuanchor="4thpage"><a href="#4thpage">Fourth section</a></li>
+        <!-- <li data-menuanchor="3rdPage"><a href="#3rdPage">Third section</a></li>
+        <li data-menuanchor="4thpage"><a href="#4thpage">Fourth section</a></li> -->
     </ul>
     <div id="fullpage">
-    
-        <div class="section active" id="section0">
+
+        <!-- <div class="section active" id="section0">
             <h1>Single Page Demo1</h1>		
-        </div>
+        </div> -->
         <div class="section" id="section1">
             <div class="slide active">
-                <div class="intro">
-                    <h1>Create Sliders</h1>
-                    <p>Not only vertical scrolling but also horizontal scrolling. With fullPage.js you will be able to add horizontal sliders in the most simple way ever.</p>				
+
+                <video autoplay loop muted id="myVideo">
+                    <source data-src="video/Brawl Stars.mp4" type="video/mp4">
+                    <!-- Add additional source elements for other formats if needed -->
+                </video>
+
+
+                <a id="play-video" class="video-play-button" href="#">
+                    <span></span>
+                </a>
+
+
+                <div id="video-overlay" class="video-overlay">
+                    <a class="video-overlay-close">&times;</a>
                 </div>
+                <!-- <p>Not only vertical scrolling but also horizontal scrolling. With fullPage.js you will be able to add horizontal sliders in the most simple way ever.</p>				 -->
+
             </div>
             <div class="slide">
                 <div class="intro">
@@ -121,7 +287,8 @@ h2{
             <div class="slide">
                 <div class="intro">
                     <h1>Compatible</h1>
-                    <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible browser! Lets give them a chance to see your site in a proper way!</p>
+                    <p>Working in modern and old browsers too! IE 8 users don't have the fault of using that horrible
+                        browser! Lets give them a chance to see your site in a proper way!</p>
                 </div>
             </div>
         </div>
@@ -131,54 +298,65 @@ h2{
                 <p>HTML markup example to define 4 sections.</p>
             </div>
         </div>
-        <div class="section" id="section3">
+        <!-- <div class="section" id="section3">
             <div class="intro">
                 <h1>Working On Tablets</h1>
             </div>
-        </div>
+        </div> -->
     </div>
-    </div>
+
     <script src="../jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
     <script>
-    //  new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); 
-     
-     
-     
-     $(document).ready(function() {
-  var slideIndexS = 0,
-      sliding = false;
-  
-  $('#fullpage').fullpage({
-    sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-    menu: '#menu',
-		css3: true,
-		licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-		afterSlideLoad: function(section, origin, destination, direction){
-			slideIndexS = destination.index+1;
-		},
-		onLeave: function(origin, destination, direction) {
-			console.log('Index: ' + origin.index + ' Slide Index: ' + slideIndexS);
-			//console.log(index, nextIndex, direction, sliding);
-			if (origin.index === 1 && !sliding) {
-				if (direction === 'down' && slideIndexS < 4) {
-					$.fn.fullpage.moveSlideRight();
-					return false;
-				} else if (direction === 'up' && slideIndexS > 1) {
-					$.fn.fullpage.moveSlideLeft();
-					return false;
-				}
-			} else if (sliding) {
-				return false;
-			}
-		}
-	});
-});
-     
-     
-     
-     </script>
+        //  new fullpage('#fullpage', { autoScrolling: true, navigation: true, anchors: ['page1', 'page2', 'page3'] }); 
+
+
+
+
+        $(document).ready(function () {
+
+
+
+            $("#play-video").click(function () {
+                $("video").get(0).play();
+            });
+
+            var slideIndexS = 0,
+                sliding = false;
+
+            $('#fullpage').fullpage({
+                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+                menu: '#menu',
+                css3: true,
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+                afterSlideLoad: function (section, origin, destination, direction) {
+                    slideIndexS = destination.index + 1;
+                },
+                onLeave: function (origin, destination, direction) {
+                    // console.log('Index: ' + origin.index + ' Slide Index: ' + slideIndexS);
+                    //console.log(index, nextIndex, direction, sliding);
+                    if (origin.index === 0 && !sliding) {
+                        console.log('direction: ' + direction + ' Slide Index: ' + slideIndexS);
+                        if (direction === 'down') {
+                            $.fn.fullpage.moveSlideRight();
+                            return false;
+                        } else if (direction === 'up' && slideIndexS > 0) {
+                            $.fn.fullpage.moveSlideLeft();
+                            return false;
+                        }
+                    } else if (sliding) {
+                        return false;
+                    }
+                }
+            });
+        });
+
+
+
+
+
+    </script>
 </body>
 
 </html>
