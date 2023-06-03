@@ -5,6 +5,7 @@
     
 }
 
+
 body{
   min-height: 900px;
   display: flex;
@@ -22,6 +23,10 @@ body{
 
 .faq{
   z-index: -1;
+}
+
+.mycards{
+  /* z-index: -1; */
 }
 
 /* header:before{
@@ -45,11 +50,12 @@ header{
   width: 100%;
   padding: 0 100px;
   height: 100vh;
-  background: #160336;
+  background: url(img/crousal/2.png);
   display: flex;
   justify-content: flex-end;
   align-items: center;
   transition: 1s;
+  
 }
 header .banner{
     position: absolute;
@@ -118,6 +124,7 @@ header.sticky{
   }
   nav ul li{
     list-style: none;
+
   }
   nav ul li a{
     color: #fff;
@@ -129,6 +136,7 @@ header.sticky{
   
   nav ul li a:hover{
     color: blueviolet;
+    
   }
 
   section{
