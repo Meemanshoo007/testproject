@@ -51,6 +51,7 @@ header{
   padding: 0 100px;
   height: 100vh;
   background: url(img/crousal/2.png);
+  background-size: 100% 100vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -157,7 +158,9 @@ header.sticky{
       padding: 40px;
     }
 
-   
+    header{
+      height: 100vh;
+    }
     section h2{
       font-size: 2em;
 
@@ -189,7 +192,7 @@ header.sticky{
     justify-content: center;
     align-items: center;
     flex-direction: column;
- 
+ z-index: 1000;
    }
   
    nav ul li a {
@@ -215,7 +218,7 @@ header.sticky{
     background-size: 25px;
     background-repeat: no-repeat;
     background-position: center;
-
+      
    }
   }
 

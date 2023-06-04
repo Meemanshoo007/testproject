@@ -64,6 +64,7 @@
                 }
     
                 @media(max-width: 991px){
+                    
                     .playerContainer .card{
                         width: auto;
                         max-width: 600;
